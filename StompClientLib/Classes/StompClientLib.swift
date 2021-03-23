@@ -118,16 +118,8 @@ public class StompClientLib: NSObject, SRWebSocketDelegate {
     }
     
     private func closeSocket(){
-        if let delegate = delegate {
-            DispatchQueue.main.async(execute: {
-                delegate.stompClientDidDisconnect(client: self)
-                if self.socket != nil {
-                    // Close the socket
-                    self.socket!.close()
-                    self.socket!.delegate = nil
-                    self.socket = nil
-                }
-            })
+        if self.socket != nil {
+            self.socket!.close()
         }
     }
     
